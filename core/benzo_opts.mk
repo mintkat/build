@@ -16,112 +16,114 @@
 #
 NOOP_BLUETOOTH := \
 	audio.a2dp.default \
+	audio.primary.msm8960 \
+	bdAddrLoader \
 	bdt \
 	bdtest \
-	bdAddrLoader \
-	bluetooth.mapsapi \
 	bluetooth.default \
-	bluetooth.mapsapi \
 	bluetooth.default_32 \
+	bluetooth.mapsapi \
+	camera.msm8960 \
+	gps.msm8960 \
+	gralloc.msm8960 \
+	hwcomposer.msm8960 \
+	keystore.msm8960 \
 	libbluetooth_jni \
 	libbluetooth_jni_32 \
+	libbt-brcm_bta \
 	libbt-brcm_gki \
 	libbt-brcm_stack \
 	libbt-hci \
-	libbt-utils \
 	libbt-qcom_sbc_decoder \
-	libbt-brcm_bta \
-	libbt-brcm_stack \
+	libbt-utils \
 	libbt-vendor \
-	libbtprofile \
-	libbtdevice \
 	libbtcore \
+	libbtdevice \
+	libbtprofile \
 	libosi \
-	net_test_osi \
-	net_test_device \
-	net_test_btcore \
+	memtrack.msm8960 \
 	net_bdtool \
 	net_hci \
-	ositests
+	net_test_btcore \
+	net_test_device \
+	net_test_osi \
+	ositests 
 
 NO_OPTIMIZATIONS += \
+	fsck.f2fs \
 	libandroid_runtime_32 \
 	libbinder \
 	libbypass \
-	libc_tzcode \
 	libc++ \
 	libc++abi \
+	libc_tzcode \
 	libcrypto \
 	libcrypto-host_32 \
-	libcompiler_rt \
 	libdex \
+	libdl \
 	libfdlibm \
-	libft2 \
 	libFraunhoferAAC \
+	libft2 \
 	libharfbuzz_ng \
 	libharfbuzz_ng_32 \
 	libhwui \
 	libicui18n \
 	libinput \
+	libjemalloc \
 	libjni_latinime_common_static \
 	libloc_core \
 	liblog \
-	libmedia_jni \
-	libmm-qcamera \
-	libmmcamera_interface \
-	libmmjpeg_interface_32 \
-	libmmcamera_interface_32 \
-	libmmjpeg_interface \
-	libmcldScript \
 	libmcldMC \
+	libmcldScript \
 	libmedia_jni \
 	libmedia_jni_32 \
 	libmincrypt \
+	libmm-qcamera \
+	libmmcamera_interface \
+	libmmcamera_interface_32 \
+	libmmjpeg_interface \
+	libmmjpeg_interface_32 \
 	libnativebridge \
-	libnfc-nci_32 \
 	libnfc-nci \
+	libnfc-nci_32 \
 	libnfc_nci_jni \
 	libpcap \
-	libpdfiumcore \
 	libpdfium \
+	libpdfiumcore \
+	libpdfiumcore_32 \
 	libperfprofdcore \
 	libqdutils \
 	libqomx_core \
-	libpdfiumcore_32 \
-	libRSCpuRef \
-	libRSDriver \
-	libRSSupport \
 	libril \
 	librilutils \
 	librilutils_static \
+	libRSCpuRef \
+	libRSDriver \
+	libRSSupport \
 	libscrypt_static \
+	libselinux \
 	libsfntly \
 	libskia \
 	libsqlite_jni_32 \
-	libselinux \
-	libsfntly \
 	libssh \
-	libwebrtc_spl \
+	libvpx \
 	libwebp-decode \
-	libwebp-encode \
+	libwebrtc_spl \
 	libxml2 \
-	fsck.f2fs \
 	linker \
-	logd \
 	logcat \
+	logd \
 	make_f2fs \
-	mm-qcamera-app \
-	mm-qcamera-app_32 \
+	mdnsd \
 	mm-jpeg-interface-test \
 	mm-qcamera-app \
-	mdnsd \
-	nfc_nci.bcm2079x.default \
+	mm-qcamera-app_32 \
 	netd \
+	nfc_nci.bcm2079x.default \
 	pppd \
 	racoon \
 	rsg-generator \
 	$(NOOP_BLUETOOTH)
-
 
 # No error
 ifeq ($(DONT_ERROROUT),true)
@@ -143,8 +145,6 @@ ifeq ($(DONT_ERROROUT),true)
  endif
 endif
 
-
-
 # 03
 ifeq ($(USE_O3_OPTIMIZATIONS),true)
 BENZO_CLANG_CFLAGS := \
@@ -165,101 +165,158 @@ BENZO_CLANG_CPPFLAGS :=
 BENZO_CLANG_LDFLAGS :=
 endif
 
-
-
 # Graphite
 ifeq ($(GRAPHITE_OPTS),true)
  ifndef LOCAL_IS_HOST_MODULE
   ifeq ($(LOCAL_CLANG),)
   LOCAL_DISABLE_GRAPHITE := \
-	fio \
-	libinput \
-	libncurses \
-	libhwui \
-	libandroid_runtime \
-	libunwind \
-	libFFTEm \
-	libicui18n \
-	libskia \
-	libvpx \
-	libmedia_jni \
-	libstagefright_mp3dec \
-	libstagefright_amrwbenc \
-	libicui18n \
-	libselinux \
-	libsfntly \
-	libharfbuzz_ng \
-	libpdfiumcore \
-	libpdfium \
-	libjemalloc \
-	libjni_filtershow_filters \
-	libwebrtc_spl \
-	libpcap \
-	libFraunhoferAAC \
-	libwebp-decode \
-	libwebp-encode \
-	libsfntly \
-	libwebrtc_apm_utility \
-	libmediandk \
-	libmmcamera_interface_32 \
-	libmmjpeg_interface_32 \
-	libmmjpeg_interface \
-	nfc_nci.bcm2079x.default \
-	$(NO_OPTIMIZATIONS)
+  audio.a2dp.default \
+  audio.primary.msm8960 \
+  bdAddrLoader \
+  bdt \
+  bdtest \
+  bluetooth.default \
+  bluetooth.mapsapi \
+  camera.msm8960 \
+  fio \
+  gps.msm8960 \
+  gralloc.msm8960 \
+  hwcomposer.msm8960 \
+  keystore.msm8960 \
+  libandroid_runtime \
+  libbluetooth_jni \
+  libbt-brcm_bta \
+  libbt-brcm_gki \
+  libbt-brcm_stack \
+  libbt-hci \
+  libbt-qcom_sbc_decoder \
+  libbt-utils \
+  libbt-vendor \
+  libbtcore \
+  libbtdevice \
+  libbtprofile \
+  libFFTEm \
+  libFraunhoferAAC \
+  libharfbuzz_ng \
+  libhwui \
+  libicui18n \
+  libinput \
+  libjemalloc \
+  libjni_filtershow_filters \
+  libmedia_jni \
+  libmediandk \
+  libmmcamera_interface_32 \
+  libmmjpeg_interface \
+  libmmjpeg_interface_32 \
+  libncurses \
+  libosi \
+  libpcap \
+  libpdfium \
+  libpdfiumcore \
+  libselinux \
+  libsfntly \
+  libsigchain \
+  libskia \
+  libstagefright_amrwbenc \
+  libstagefright_mp3dec \
+  libunwind \
+  libvpx \
+  libwebp-decode \
+  libwebp-encode \
+  libwebrtc_apm_utility \
+  libwebrtc_spl \
+  memtrack.msm8960 \
+  net_bdtool \
+  net_hci \
+  net_test_btcore \
+  net_test_device \
+  net_test_osi \
+  nfc_nci.bcm2079x.default \
+  ositests \
+  $(NO_OPTIMIZATIONS)
 
    ifeq ($(filter $(LOCAL_DISABLE_GRAPHITE), $(LOCAL_MODULE)),)
     ifdef LOCAL_CONLYFLAGS
      LOCAL_CONLYFLAGS += \
-	-fgraphite \
-	-fgraphite-identity \
-	-floop-flatten \
-	-floop-parallelize-all \
-	-ftree-loop-linear \
-	-floop-interchange \
-	-floop-strip-mine \
-	-floop-block
+  -fgraphite \
+  -fgraphite-identity \
+  -floop-flatten \
+  -floop-parallelize-all \
+  -ftree-loop-linear \
+  -floop-interchange \
+  -floop-strip-mine \
+  -floop-block
     else
      LOCAL_CONLYFLAGS := \
-	-fgraphite \
-	-fgraphite-identity \
-	-floop-flatten \
-	-floop-parallelize-all \
-	-ftree-loop-linear \
-	-floop-interchange \
-	-floop-strip-mine \
-	-floop-block
+  -fgraphite \
+  -fgraphite-identity \
+  -floop-flatten \
+  -floop-parallelize-all \
+  -ftree-loop-linear \
+  -floop-interchange \
+  -floop-strip-mine \
+  -floop-block
     endif
     ifdef LOCAL_CPPFLAGS
      LOCAL_CPPFLAGS += \
-	-fgraphite \
-	-fgraphite-identity \
-	-floop-flatten \
-	-floop-parallelize-all \
-	-ftree-loop-linear \
-	-floop-interchange \
-	-floop-strip-mine \
-	-floop-block
+  -fgraphite \
+  -fgraphite-identity \
+  -floop-flatten \
+  -floop-parallelize-all \
+  -ftree-loop-linear \
+  -floop-interchange \
+  -floop-strip-mine \
+  -floop-block
     else
      LOCAL_CPPFLAGS := \
-	-fgraphite \
-	-fgraphite-identity \
-	-floop-flatten \
-	-floop-parallelize-all \
-	-ftree-loop-linear \
-	-floop-interchange \
-	-floop-strip-mine \
-	-floop-block
+  -fgraphite \
+  -fgraphite-identity \
+  -floop-flatten \
+  -floop-parallelize-all \
+  -ftree-loop-linear \
+  -floop-interchange \
+  -floop-strip-mine \
+  -floop-block
     endif
    endif
   endif
  endif
 endif
 
-
-
 # IPA Analyser
 ifeq ($(ENABLE_IPA_ANALYSER),true)
-LOCAL_DISABLE_IPA :=
+LOCAL_DISABLE_IPA := \
+  audio.a2dp.default \
+  audio.primary.msm8960 \
+  bdAddrLoader \
+  bdt \
+  bdtest \
+  bluetooth.default \
+  bluetooth.mapsapi \
+  camera.msm8960 \
+  gps.msm8960 \
+  gralloc.msm8960 \
+  hwcomposer.msm8960 \
+  keystore.msm8960 \
+  libbluetooth_jni \
+  libbt-brcm_bta \
+  libbt-brcm_gki \
+  libbt-brcm_stack \
+  libbt-hci \
+  libbt-qcom_sbc_decoder \
+  libbt-utils \
+  libbt-vendor \
+  libbtcore \
+  libbtdevice \
+  libbtprofile \
+  libosi \
+  memtrack.msm8960 \
+  net_bdtool \
+  net_hci \
+  net_test_btcore \
+  net_test_device \
+  net_test_osi \
+  ositests 
 
  ifeq (,$(filter true,$(LOCAL_CLANG)))
    ifneq (1,$(words $(filter $(LOCAL_DISABLE_IPA),$(LOCAL_MODULE))))
@@ -276,8 +333,6 @@ LOCAL_DISABLE_IPA :=
    endif
  endif
 endif
-
-
 
 # Decrease debugging
 ifeq ($(FORCE_DISABLE_DEBUGGING),true)
@@ -299,14 +354,12 @@ LOCAL_DEBUGGING_WHITELIST := $(NOOP_BLUETOOTH)
   endif
 endif
 
-
-
 # pipe
 ifeq ($(TARGET_USE_PIPE),true)
 LOCAL_DISABLE_PIPE := \
-	libc_dns \
-	libc_tzcode \
-	$(NO_OPTIMIZATIONS)
+  libc_dns \
+  libc_tzcode \
+  $(NO_OPTIMIZATIONS)
 
  ifeq ($(filter $(LOCAL_DISABLE_PIPE), $(LOCAL_MODULE)),)
   ifdef LOCAL_CONLYFLAGS
@@ -318,50 +371,49 @@ LOCAL_DISABLE_PIPE := \
   endif
   ifdef LOCAL_CPPFLAGS
    LOCAL_CPPFLAGS += \
-	-pipe
+  -pipe
   else
    LOCAL_CPPFLAGS := \
-	-pipe
+  -pipe
   endif
  endif
 endif
 
-
-
-# Cortex
-ifeq ($(CORTEX_TUNINGS),true)
+# Krait
+ifeq ($(KRAIT_TUNINGS),true)
  ifndef LOCAL_IS_HOST_MODULE
- LOCAL_DISABLE_CORTEX := \
-	libaudioutils \
-	libmcldSupport \
-	libmcldScript \
-	libpixelflinger \
-	libwebrtc_system_wrappers \
-	libwifi-service \
-	$(NOOP_BLUETOOTH) \
-	$(NO_OPTIMIZATIONS)
+ LOCAL_DISABLE_KRAIT := \
+  libaudioutils \
+  libmcldScript \
+  libmcldSupport \
+  libpixelflinger \
+  libwebrtc_system_wrappers \
+  libwifi-service \
+  $(NOOP_BLUETOOTH) \
+  $(NO_OPTIMIZATIONS)
 
-  ifneq ($(strip $(LOCAL_CLANG)),true)
-   ifeq ($(filter $(LOCAL_DISABLE_CORTEX), $(LOCAL_MODULE)),)
-    ifdef LOCAL_CFLAGS
-     LOCAL_CFLAGS += -mcpu=cortex-a57.cortex-a53 -mtune=cortex-a57.cortex-a53
-    else
-     LOCAL_CFLAGS := -mcpu=cortex-a57.cortex-a53 -mtune=cortex-a57.cortex-a53
-    endif
+  ifeq ($(filter $(LOCAL_DISABLE_KRAIT), $(LOCAL_MODULE)),)
+   ifdef LOCAL_CONLYFLAGS
+    LOCAL_CONLYFLAGS += -mcpu=cortex-a15 -mtune=cortex-a15
+   else
+    LOCAL_CONLYFLAGS := -mcpu=cortex-a15 -mtune=cortex-a15
+   endif
+   ifdef LOCAL_CPPFLAGS
+    LOCAL_CPPFLAGS += -mcpu=cortex-a15 -mtune=cortex-a15
+   else
+    LOCAL_CPPFLAGS := -mcpu=cortex-a15 -mtune=cortex-a15
    endif
   endif
  endif
 endif
 
-
-
 # pthread
 ifeq ($(ENABLE_PTHREAD),true)
 LOCAL_DISABLE_PTHREAD := \
-	libc_netbsd \
-	libc_tzcode \
-	$(NOOP_BLUETOOTH) \
-	$(NO_OPTIMIZATIONS)
+  libc_netbsd \
+  libc_tzcode \
+  $(NOOP_BLUETOOTH) \
+  $(NO_OPTIMIZATIONS)
 
  ifeq ($(filter $(LOCAL_DISABLE_PTHREAD), $(LOCAL_MODULE)),)
   ifdef LOCAL_CONLYFLAGS
@@ -377,20 +429,18 @@ LOCAL_DISABLE_PTHREAD := \
  endif
 endif
 
-
-
 # OpenMP
 ifeq ($(ENABLE_GOMP),true)
 LOCAL_DISABLE_GOMP := \
-	libc_tzcode \
-	libscrypt_static \
-	libperfprofdcore \
-	libperfprofdutils \
-	perfprofd \
-	libv8_32 \
-	libv8 \
-	$(NOOP_BLUETOOTH) \
-	$(NO_OPTIMIZATIONS)
+  libc_tzcode \
+  libperfprofdcore \
+  libperfprofdutils \
+  libscrypt_static \
+  libv8 \
+  libv8_32 \
+  perfprofd \
+  $(NOOP_BLUETOOTH) \
+  $(NO_OPTIMIZATIONS)
 
  ifneq ($(filter arm arm64,$(TARGET_ARCH)),)
   ifneq ($(strip $(LOCAL_IS_HOST_MODULE)),true)
@@ -412,15 +462,13 @@ LOCAL_DISABLE_GOMP := \
  endif
 endif
 
-
-
 # Memory Sanitize
 ifeq ($(ENABLE_SANITIZE),true)
 DISABLE_SANITIZE_LEAK := \
-	libc_dns \
-	libc_tzcode \
-	$(NOOP_BLUETOOTH) \
-	$(NO_OPTIMIZATIONS)
+  libc_dns \
+  libc_tzcode \
+  $(NOOP_BLUETOOTH) \
+  $(NO_OPTIMIZATIONS)
 
  ifneq ($(strip $(LOCAL_IS_HOST_MODULE)),true)
   ifneq ($(strip $(LOCAL_CLANG)),true)
@@ -435,399 +483,389 @@ DISABLE_SANITIZE_LEAK := \
  endif
 endif
 
-
-
 # Extra flags
 ifeq ($(ENABLE_EXTRAGCC),true)
 LOCAL_DISABLE_EXTRAGCC := \
-	libc_tzcode \
-	libbinder \
-	libjemalloc \
-	libmediandk \
-	$(NOOP_BLUETOOTH) \
-	$(NO_OPTIMIZATIONS)
+  libbinder \
+  libc_tzcode \
+  libjemalloc \
+  libmediandk \
+  $(NOOP_BLUETOOTH) \
+  $(NO_OPTIMIZATIONS)
 
  ifndef LOCAL_IS_HOST_MODULE
   ifeq ($(LOCAL_CLANG),)
    ifneq (1,$(words $(filter $(LOCAL_DISABLE_EXTRAGCC), $(LOCAL_MODULE))))
     ifdef LOCAL_CONLYFLAGS
      LOCAL_CONLYFLAGS += \
-	-frerun-cse-after-loop \
-	-frename-registers \
-	-ffunction-sections \
-	-fdata-sections \
-	-fgcse-las \
-	-fgcse-sm \
-	-fipa-pta \
-	-fivopts \
-	-fweb \
-	-fomit-frame-pointer \
-	-frename-registers \
-	-fsection-anchors \
-	-ftracer \
-	-ftree-loop-im \
-	-ftree-loop-ivcanon \
-	-funsafe-loop-optimizations \
-	-funswitch-loops \
-	-fira-loop-pressure \
-	-fforce-addr \
-	-funroll-loops \
-	-ftree-loop-distribution \
-	-fsection-anchors \
-	-ftree-loop-im \
-	-ftree-loop-ivcanon \
-	-ffunction-sections \
-	-ffp-contract=fast \
-	-Wno-unused-parameter \
-	-Wno-unused-but-set-variable \
-	-Wno-maybe-uninitialized \
-	-Wno-error=array-bounds \
-	-Wno-error=clobbered \
-	-Wno-error=maybe-uninitialized \
-	-Wno-error=strict-overflow
+  -fdata-sections \
+  -fforce-addr \
+  -ffp-contract=fast \
+  -ffunction-sections \
+  -ffunction-sections \
+  -fgcse-las \
+  -fgcse-sm \
+  -fipa-pta \
+  -fira-loop-pressure \
+  -fivopts \
+  -fomit-frame-pointer \
+  -frename-registers \
+  -frename-registers \
+  -frerun-cse-after-loop \
+  -fsection-anchors \
+  -fsection-anchors \
+  -ftracer \
+  -ftree-loop-distribution \
+  -ftree-loop-im \
+  -ftree-loop-im \
+  -ftree-loop-ivcanon \
+  -ftree-loop-ivcanon \
+  -funroll-loops \
+  -funsafe-loop-optimizations \
+  -funswitch-loops \
+  -fweb \
+  -Wno-error=array-bounds \
+  -Wno-error=clobbered \
+  -Wno-error=maybe-uninitialized \
+  -Wno-error=strict-overflow \
+  -Wno-maybe-uninitialized \
+  -Wno-unused-but-set-variable \
+  -Wno-unused-parameter 
     else
      LOCAL_CONLYFLAGS := \
-	-frerun-cse-after-loop \
-	-frename-registers \
-	-ffunction-sections \
-	-fdata-sections \
-	-fgcse-las \
-	-fgcse-sm \
-	-fipa-pta \
-	-fivopts \
-	-fweb \
-	-fomit-frame-pointer \
-	-frename-registers \
-	-fsection-anchors \
-	-ftracer \
-	-ftree-loop-im \
-	-ftree-loop-ivcanon \
-	-funsafe-loop-optimizations \
-	-funswitch-loops \
-	-fira-loop-pressure \
-	-fforce-addr \
-	-funroll-loops \
-	-ftree-loop-distribution \
-	-fsection-anchors \
-	-ftree-loop-im \
-	-ftree-loop-ivcanon \
-	-ffunction-sections \
-	-ffp-contract=fast \
-	-Wno-unused-parameter \
-	-Wno-unused-but-set-variable \
-	-Wno-maybe-uninitialized \
-	-Wno-error=array-bounds \
-	-Wno-error=clobbered \
-	-Wno-error=maybe-uninitialized \
-	-Wno-error=strict-overflow
+  -fdata-sections \
+  -fforce-addr \
+  -ffp-contract=fast \
+  -ffunction-sections \
+  -ffunction-sections \
+  -fgcse-las \
+  -fgcse-sm \
+  -fipa-pta \
+  -fira-loop-pressure \
+  -fivopts \
+  -fomit-frame-pointer \
+  -frename-registers \
+  -frename-registers \
+  -frerun-cse-after-loop \
+  -fsection-anchors \
+  -fsection-anchors \
+  -ftracer \
+  -ftree-loop-distribution \
+  -ftree-loop-im \
+  -ftree-loop-im \
+  -ftree-loop-ivcanon \
+  -ftree-loop-ivcanon \
+  -funroll-loops \
+  -funsafe-loop-optimizations \
+  -funswitch-loops \
+  -fweb \
+  -Wno-error=array-bounds \
+  -Wno-error=clobbered \
+  -Wno-error=maybe-uninitialized \
+  -Wno-error=strict-overflow \
+  -Wno-maybe-uninitialized \
+  -Wno-unused-but-set-variable \
+  -Wno-unused-parameter 
     endif
     ifdef LOCAL_CPPFLAGS
      LOCAL_CPPFLAGS += \
-	-frerun-cse-after-loop \
-	-frename-registers \
-	-ffunction-sections \
-	-fdata-sections \
-	-fgcse-las \
-	-fgcse-sm \
-	-fipa-pta \
-	-fivopts \
-	-fweb \
-	-fomit-frame-pointer \
-	-frename-registers \
-	-fsection-anchors \
-	-ftracer \
-	-ftree-loop-im \
-	-ftree-loop-ivcanon \
-	-funsafe-loop-optimizations \
-	-funswitch-loops \
-	-fira-loop-pressure \
-	-fforce-addr \
-	-funroll-loops \
-	-ftree-loop-distribution \
-	-fsection-anchors \
-	-ftree-loop-im \
-	-ftree-loop-ivcanon \
-	-ffunction-sections \
-	-ffp-contract=fast \
-	-Wno-unused-parameter \
-	-Wno-unused-but-set-variable \
-	-Wno-maybe-uninitialized \
-	-Wno-error=array-bounds \
-	-Wno-error=clobbered \
-	-Wno-error=maybe-uninitialized \
-	-Wno-error=strict-overflow
+  -fdata-sections \
+  -fforce-addr \
+  -ffp-contract=fast \
+  -ffunction-sections \
+  -ffunction-sections \
+  -fgcse-las \
+  -fgcse-sm \
+  -fipa-pta \
+  -fira-loop-pressure \
+  -fivopts \
+  -fomit-frame-pointer \
+  -frename-registers \
+  -frename-registers \
+  -frerun-cse-after-loop \
+  -fsection-anchors \
+  -fsection-anchors \
+  -ftracer \
+  -ftree-loop-distribution \
+  -ftree-loop-im \
+  -ftree-loop-im \
+  -ftree-loop-ivcanon \
+  -ftree-loop-ivcanon \
+  -funroll-loops \
+  -funsafe-loop-optimizations \
+  -funswitch-loops \
+  -fweb \
+  -mvectorize-with-neon-quad \
+  -Wno-error=array-bounds \
+  -Wno-error=clobbered \
+  -Wno-error=maybe-uninitialized \
+  -Wno-error=strict-overflow \
+  -Wno-maybe-uninitialized \
+  -Wno-unused-but-set-variable \
+  -Wno-unused-parameter 
     else
      LOCAL_CPPFLAGS := \
-	-frerun-cse-after-loop \
-	-frename-registers \
-	-ffunction-sections \
-	-fdata-sections \
-	-fgcse-las \
-	-fgcse-sm \
-	-fipa-pta \
-	-fivopts \
-	-fweb \
-	-fomit-frame-pointer \
-	-frename-registers \
-	-fsection-anchors \
-	-ftracer \
-	-ftree-loop-im \
-	-ftree-loop-ivcanon \
-	-funsafe-loop-optimizations \
-	-funswitch-loops \
-	-fira-loop-pressure \
-	-fforce-addr \
-	-funroll-loops \
-	-ftree-loop-distribution \
-	-fsection-anchors \
-	-ftree-loop-im \
-	-ftree-loop-ivcanon \
-	-ffunction-sections \
-	-ffp-contract=fast \
-	-Wno-unused-parameter \
-	-Wno-unused-but-set-variable \
-	-Wno-maybe-uninitialized \
-	-Wno-error=array-bounds \
-	-Wno-error=clobbered \
-	-Wno-error=maybe-uninitialized \
-	-Wno-error=strict-overflow
+  -fdata-sections \
+  -fforce-addr \
+  -ffp-contract=fast \
+  -ffunction-sections \
+  -ffunction-sections \
+  -fgcse-las \
+  -fgcse-sm \
+  -fipa-pta \
+  -fira-loop-pressure \
+  -fivopts \
+  -fomit-frame-pointer \
+  -frename-registers \
+  -frename-registers \
+  -frerun-cse-after-loop \
+  -fsection-anchors \
+  -fsection-anchors \
+  -ftracer \
+  -ftree-loop-distribution \
+  -ftree-loop-im \
+  -ftree-loop-im \
+  -ftree-loop-ivcanon \
+  -ftree-loop-ivcanon \
+  -funroll-loops \
+  -funsafe-loop-optimizations \
+  -funswitch-loops \
+  -fweb \
+  -Wno-error=array-bounds \
+  -Wno-error=clobbered \
+  -Wno-error=maybe-uninitialized \
+  -Wno-error=strict-overflow \
+  -Wno-maybe-uninitialized \
+  -Wno-unused-but-set-variable \
+  -Wno-unused-parameter 
     endif
    endif
   endif
  endif
 endif
 
-
-
 # Strict
 ifeq ($(STRICT_ALIASING),true)
 LOCAL_FORCE_DISABLE_STRICT := \
-	mm-qcamera-app \
-	libziparchive-host \
-	libziparchive \
-	libdiskconfig \
-	logd \
-	libjavacore \
-	libstagefright_webm \
-	libc_bionic_ndk \
-	libc_dns \
-	libc_gdtoa \
-	libc_tzcode \
-	libc_openbsd_ndk \
-	liblog \
-	libc \
-	libbt-brcm_stack \
-	libandroid_runtime \
-	libandroidfw \
-	libosi \
-	libnetlink \
-	libRS \
-	clatd \
-	ip \
-	libc_nomalloc \
-	linker
+  camera.msm8960 \
+  clatd \
+  ip \
+  libandroid_runtime \
+  libandroidfw \
+  libbt-brcm_stack \
+  libc \
+  libc_bionic_ndk \
+  libc_dns \
+  libc_gdtoa \
+  libc_nomalloc \
+  libc_openbsd_ndk \
+  libc_tzcode \
+  libdiskconfig \
+  libjavacore \
+  liblog \
+  libnetlink \
+  libosi \
+  libRS \
+  libstagefright_webm \
+  libziparchive \
+  libziparchive-host \
+  linker \
+  logd \
+  mm-qcamera-app 
 
 LOCAL_DISABLE_STRICT := \
-	clatd_test \
-	libart \
-	libartd \
-	libart-disassembler \
-	libart-compiler \
-	libsigchain \
-	dalvikvm \
-	dex2oat \
-	dex2oatd \
-	oatdump \
-	patchoat \
-	libdw \
-	libmmjpeg_interface \
-	mm-qcamera-app_32 \
-	libbluetooth_jni_32 \
-	libmmcamera_interface_32 \
-	libmmjpeg_interface_32 \
-	libmedia_jni_32 \
-	libcrypto_static \
-	nfc_nci.bcm2079x.default \
-	fs_config_generate_shamu \
-	fs_config \
-	libcompiler_rt \
-	libicui18n-host_32 \
-	libbacktrace_test \
-	libbacktrace \
-	libbacktrace_32 \
-	libunwindbacktrace \
-	libunwind \
-	libunwind_32 \
-	libext2_quota_host \
-	libc_bionic \
-	libc_dns \
-	libc_malloc \
-	libc_openbsd_ndk \
-	libc_bionic_ndk \
-	libc_gdtoa \
-	libc_gdtoa \
-	libc_openbsd \
-	libc \
-	libc_nomalloc \
-	libc_nomalloc \
-	libcutils \
-	liblog \
-	libziparchive \
-	libstagefright_webm \
-	libtwrpmtp \
-	libfusetwrp \
-	libguitwrp \
-	libpcre \
-	libaapt \
-	libz \
-	libbz \
-	libbase \
-	libexpat \
-	libcrypto-host \
-	libuclibcrpc \
-	libziparchive-host \
-	libicui18n \
-	libselinux \
-	libsfntly \
-	libharfbuzz_ng \
-	libpdfiumcore \
-	libpdfium \
-	libandroid_runtime \
-	libmedia \
-	libicuuc-host_32 \
-	libicui18n-host_32 \
-	libstagefright_webm \
-	libaudioflinger \
-	libmediaplayerservice \
-	libstagefright \
-	libdiskconfig \
-	libjavacore \
-	libfdlibm \
-	libvariablespeed \
-	librtp_jni \
-	libwilhelm \
-	libdownmix \
-	libldnhncr \
-	libqcomvisualizer \
-	libvisualizer \
-	libutils \
-	libandroidfw \
-	libart-disassembler \
-	libbt-brcm_stack \
-	libandroid_runtime \
-	libandroidfw \
-	libosi \
-	libnetlink \
-	libsparse_host \
-	librilutils \
-	append2simg \
-	busybox \
-	static_busybox \
-	bluetooth.default \
-	backtrace_test \
-	build_verity_tree \
-	checkseapp \
-	checkfc \
-	checkpolicy \
-	wpa_supplicant \
-	aprotoc \
-	aapt \
-	aidl \
-	dnsmasq \
-	fastboot \
-	logd \
-	mdnsd \
-	clatd \
-	fio \
-	img2simg \
-	img2simg_host \
-	ip \
-	ping \
-	ping6 \
-	linker \
-	net_net_gyp \
-	linker \
-	mm-vdec-omx-test \
-	mkbootimg \
-	mkbootfs \
-	libssh \
-	libext2fs \
-	simg2img \
-	simg2img_host \
-	toybox \
-	updater \
-	verity_signer \
-	tzdatacheck \
-	tzdata \
-	libbinder \
-	fsck.f2fs \
-	libnfc-nci_32 \
-	libnfc-nci \
-	libnfc_nci_jni \
-	fs_config_generate_angler \
-	$(NO_OPTIMIZATIONS)
+  aapt \
+  aidl \
+  append2simg \
+  aprotoc \
+  backtrace_test \
+  bluetooth.default \
+  build_verity_tree \
+  busybox \
+  camera.msm8960 \
+  checkfc \
+  checkpolicy \
+  checkseapp \
+  clatd \
+  clatd_test \
+  dalvikvm \
+  dalvikvm_32 \
+  dex2oat \
+  dex2oatd \
+  dnsmasq \
+  fastboot \
+  fio \
+  fs_config \
+  fs_config_generate_mako \
+  fsck.f2fs \
+  img2simg \
+  img2simg_host \
+  ip \
+  libaapt \
+  libandroid_runtime \
+  libandroid_runtime \
+  libandroidfw \
+  libart \
+  libart-compiler \
+  libart-disassembler \
+  libaudioflinger \
+  libbacktrace \
+  libbacktrace_32 \
+  libbacktrace_test \
+  libbase \
+  libbinder \
+  libbluetooth_jni_32 \
+  libbt-brcm_stack \
+  libbz \
+  libc \
+  libc_bionic \
+  libc_bionic_ndk \
+  libc_dns \
+  libc_gdtoa \
+  libc_malloc \
+  libc_nomalloc \
+  libc_openbsd \
+  libc_openbsd_ndk \
+  libc_tzcode \
+  libcompiler_rt \
+  libcrypto-host \
+  libcrypto_static \
+  libcutils \
+  libdiskconfig \
+  libdownmix \
+  libdw \
+  libexpat \
+  libext2_quota_host \
+  libext2fs \
+  libfdlibm \
+  libfusetwrp \
+  libguitwrp \
+  libharfbuzz_ng \
+  libicui18n \
+  libicui18n-host_32 \
+  libicuuc-host_32 \
+  libjavacore \
+  libldnhncr \
+  liblog \
+  libmedia \
+  libmedia_jni_32 \
+  libmmcamera_interface_32 \
+  libmmjpeg_interface \
+  libmmjpeg_interface_32 \
+  libmediaplayerservice \
+  libnetlink \
+  libnfc-nci \
+  libnfc-nci_32 \
+  libnfc_nci_jni \
+  libosi \
+  libpcre \
+  libpdfium \
+  libpdfiumcore \
+  libqcomvisualizer \
+  librilutils \
+  librtp_jni \
+  libselinux \
+  libsfntly \
+  libsparse_host \
+  libssh \
+  libstagefright \
+  libstagefright_webm \
+  libtwrpmtp \
+  libuclibcrpc \
+  libunwind \
+  libunwind_32 \
+  libunwindbacktrace \
+  libutils \
+  libvariablespeed \
+  libvisualizer \
+  libwilhelm \
+  libz \
+  libziparchive \
+  libziparchive-host \
+  linker \
+  logd \
+  mdnsd \
+  mkbootfs \
+  mkbootimg \
+  mm-qcamera-app_32 \
+  mm-vdec-omx-test \
+  net_net_gyp \
+  nfc_nci.bcm2079x.default \
+  oatdump \
+  patchoat \
+  ping \
+  ping6 \
+  simg2img \
+  simg2img_host \
+  static_busybox \
+  tzdata \
+  tzdatacheck \
+  updater \
+  verity_signer \
+  wpa_supplicant \
+  $(NO_OPTIMIZATIONS)
 
- ifneq ($(filter $(LOCAL_DISABLE_STRICT),$(LOCAL_MODULE)),)
+ifneq ($(filter $(LOCAL_DISABLE_STRICT),$(LOCAL_MODULE)),)
   ifdef LOCAL_CONLYFLAGS
    LOCAL_CONLYFLAGS += \
-	-fno-strict-aliasing
+  -fno-strict-aliasing
   else
    LOCAL_CONLYFLAGS := \
-	-fno-strict-aliasing
+  -fno-strict-aliasing
   endif
   ifdef LOCAL_CPPFLAGS
    LOCAL_CPPFLAGS += \
-	-fno-strict-aliasing
+  -fno-strict-aliasing
   else
   LOCAL_CPPFLAGS := \
-	-fno-strict-aliasing
+  -fno-strict-aliasing
   endif
   else
   ifdef LOCAL_CONLYFLAGS
    LOCAL_CONLYFLAGS += \
-	-fstrict-aliasing \
-	-Werror=strict-aliasing
+  -fstrict-aliasing \
+  -Werror=strict-aliasing
   else
    LOCAL_CONLYFLAGS := \
-	-fstrict-aliasing \
-	-Werror=strict-aliasing
+  -fstrict-aliasing \
+  -Werror=strict-aliasing
   endif
   ifdef LOCAL_CPPFLAGS
    LOCAL_CPPFLAGS += \
-	-fstrict-aliasing \
-	-Werror=strict-aliasing
+  -fstrict-aliasing \
+  -Werror=strict-aliasing
   else
    LOCAL_CPPFLAGS := \
-	-fstrict-aliasing \
-	-Werror=strict-aliasing
+  -fstrict-aliasing \
+  -Werror=strict-aliasing
   endif
   ifndef LOCAL_CLANG
    LOCAL_CONLYFLAGS += \
-	-Wstrict-aliasing=3
+  -Wstrict-aliasing=3
    LOCAL_CPPFLAGS += \
-	-Wstrict-aliasing=3
+  -Wstrict-aliasing=3
   else
    LOCAL_CONLYFLAGS += \
-	-Wstrict-aliasing=2
+  -Wstrict-aliasing=2
    LOCAL_CPPFLAGS += \
-	-Wstrict-aliasing=2
+  -Wstrict-aliasing=2
   endif
  endif
  else
  ifeq (1,$(words $(filter $(LOCAL_FORCE_DISABLE_STRICT),$(LOCAL_MODULE))))
   ifdef LOCAL_CONLYFLAGS
    LOCAL_CONLYFLAGS += \
-	-fno-strict-aliasing
+  -fno-strict-aliasing
   else
    LOCAL_CONLYFLAGS := \
-	-fno-strict-aliasing
+  -fno-strict-aliasing
   endif
   ifdef LOCAL_CPPFLAGS
    LOCAL_CPPFLAGS += \
-	-fno-strict-aliasing
+  -fno-strict-aliasing
   else
    LOCAL_CPPFLAGS := \
-	-fno-strict-aliasing
+  -fno-strict-aliasing
   endif
  endif
 endif

@@ -34,10 +34,10 @@ $(combo_var_prefix)CXX := $(CXX)
 $(combo_var_prefix)AR := $(AR)
 $(combo_var_prefix)STRIP := $(STRIP)
 
-$(combo_var_prefix)GLOBAL_CFLAGS := -fno-exceptions -Wno-multichar
+$(combo_var_prefix)GLOBAL_CFLAGS := -fno-exceptions -w
 $(combo_var_prefix)RELEASE_CFLAGS := -O2 -fno-strict-aliasing
-$(combo_var_prefix)GLOBAL_CPPFLAGS :=
-$(combo_var_prefix)GLOBAL_LDFLAGS :=
+$(combo_var_prefix)GLOBAL_CPPFLAGS := -w
+$(combo_var_prefix)GLOBAL_LDFLAGS := -w
 $(combo_var_prefix)GLOBAL_ARFLAGS := crsPD
 $(combo_var_prefix)GLOBAL_LD_DIRS :=
 
