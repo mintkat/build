@@ -5,7 +5,6 @@ Check boot jars.
 
 Usage: check_boot_jars.py <package_whitelist_file> <jar1> <jar2> ...
 """
-from __future__ import print_function
 import logging
 import os.path
 import re
@@ -51,22 +50,20 @@ def CheckJar(jar):
     return False
   items = stdout.split()
   for f in items:
-    if f.endswith(b'.class'):
+    if f.endswith('.class'):
       package_name = os.path.dirname(f)
-      if sys.version_info[0] >= 3:
-        package_name = package_name.decode("utf-8")
       package_name = package_name.replace('/', '.')
       # Skip class without a package name
       if package_name and not whitelist_re.match(package_name):
-        print(('Error: %s: unknown package name of class file %s'
-                              % (jar, f)), file=sys.stderr)
+        print >> sys.stderr, ('Error: %s: unknown package name of class file %s'
+                              % (jar, f))
         return False
   return True
 
 
 def main(argv):
   if len(argv) < 2:
-    print(__doc__)
+    print __doc__
     return 1
 
   if not LoadWhitelist(argv[0]):

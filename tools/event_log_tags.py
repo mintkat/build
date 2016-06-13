@@ -14,7 +14,6 @@
 
 """A module for reading and parsing event-log-tags files."""
 
-from __future__ import print_function
 import re
 import sys
 
@@ -56,7 +55,7 @@ class TagFile(object):
     if file_object is None:
       try:
         file_object = open(filename, "rb")
-      except (IOError, OSError) as e:
+      except (IOError, OSError), e:
         self.AddError(str(e))
         return
 
@@ -65,8 +64,6 @@ class TagFile(object):
         self.linenum += 1
 
         line = line.strip()
-        if sys.version_info[0] >= 3:
-          line = str(line, "utf-8")
         if not line or line[0] == '#': continue
         parts = re.split(r"\s+", line, 2)
 
@@ -103,7 +100,7 @@ class TagFile(object):
 
         self.tags.append(Tag(tag, tagname, description,
                              self.filename, self.linenum))
-    except (IOError, OSError) as e:
+    except (IOError, OSError), e:
       self.AddError(str(e))
 
 
@@ -123,7 +120,7 @@ def WriteOutput(output_file, data):
   """Write 'data' to the given output filename (which may be None to
   indicate stdout).  Emit an error message and die on any failure.
   'data' may be a string or a StringIO object."""
-  if not isinstance(data, str) and not isinstance(data, bytes):
+  if not isinstance(data, str):
     data = data.getvalue()
   try:
     if output_file is None:
@@ -131,14 +128,8 @@ def WriteOutput(output_file, data):
       output_file = "<stdout>"
     else:
       out = open(output_file, "wb")
-    if isinstance(data, bytes):
-      out.write(data)
-    else:
-      if sys.version_info[0] < 3:
-        out.write(str(data))
-      else:
-        out.write(str(data, "utf-8"))
+    out.write(data)
     out.close()
-  except (IOError, OSError) as e:
-    print("failed to write %s: %s" % (output_file, e), file=sys.stderr)
+  except (IOError, OSError), e:
+    print >> sys.stderr, "failed to write %s: %s" % (output_file, e)
     sys.exit(1)

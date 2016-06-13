@@ -23,8 +23,7 @@ tags in the given input file.
 -h to display this usage message and exit.
 """
 
-from __future__ import print_function
-from io import StringIO
+import cStringIO
 import getopt
 import os
 import os.path
@@ -35,31 +34,26 @@ import event_log_tags
 
 output_file = None
 
-if sys.version_info[0] >= 3:
-  # Py3 strings are already unicode, so...
-  def unicode(x):
-    return x
-
 try:
   opts, args = getopt.getopt(sys.argv[1:], "ho:")
-except getopt.GetoptError as err:
-  print(str(err))
-  print(__doc__)
+except getopt.GetoptError, err:
+  print str(err)
+  print __doc__
   sys.exit(2)
 
 for o, a in opts:
   if o == "-h":
-    print(__doc__)
+    print __doc__
     sys.exit(2)
   elif o == "-o":
     output_file = a
   else:
-    print("unhandled option %s" % (o,), file=sys.stderr)
+    print >> sys.stderr, "unhandled option %s" % (o,)
     sys.exit(1)
 
 if len(args) != 2:
-  print("need exactly two input files, not %d" % (len(args),))
-  print(__doc__)
+  print "need exactly two input files, not %d" % (len(args),)
+  print __doc__
   sys.exit(1)
 
 fn = args[0]
@@ -91,32 +85,32 @@ if "javadoc_hide" in tagfile.options:
 
 if tagfile.errors:
   for fn, ln, msg in tagfile.errors:
-    print("%s:%d: error: %s" % (fn, ln, msg), file=sys.stderr)
+    print >> sys.stderr, "%s:%d: error: %s" % (fn, ln, msg)
   sys.exit(1)
 
-buffer = StringIO()
+buffer = cStringIO.StringIO()
 buffer.write("/* This file is auto-generated.  DO NOT MODIFY.\n"
              " * Source file: %s\n"
-             " */\n\n" % (unicode(fn),))
+             " */\n\n" % (fn,))
 
-buffer.write("package %s;\n\n" % (unicode(tagfile.options["java_package"][0]),))
+buffer.write("package %s;\n\n" % (tagfile.options["java_package"][0],))
 
 basename, _ = os.path.splitext(os.path.basename(fn))
 
 if hide:
-  buffer.write(u"/**\n"
+  buffer.write("/**\n"
                " * @hide\n"
                " */\n")
-buffer.write(u"public class %s {\n" % (basename,))
-buffer.write(u"  private %s() { }  // don't instantiate\n" % (basename,))
+buffer.write("public class %s {\n" % (basename,))
+buffer.write("  private %s() { }  // don't instantiate\n" % (basename,))
 
 for t in tagfile.tags:
   if t.description:
-    buffer.write(u"\n  /** %d %s %s */\n" % (t.tagnum, t.tagname, t.description))
+    buffer.write("\n  /** %d %s %s */\n" % (t.tagnum, t.tagname, t.description))
   else:
-    buffer.write(u"\n  /** %d %s */\n" % (t.tagnum, t.tagname))
+    buffer.write("\n  /** %d %s */\n" % (t.tagnum, t.tagname))
 
-  buffer.write(u"  public static final int %s = %d;\n" %
+  buffer.write("  public static final int %s = %d;\n" %
                (t.tagname.upper(), t.tagnum))
 
 keywords = frozenset(["abstract", "continue", "for", "new", "switch", "assert",
@@ -144,18 +138,15 @@ for t in tagfile.tags:
     args = []
   argTypesNames = ", ".join([javaTypes[int(arg[1])] + " " + javaName(arg[0]) for arg in args])
   argNames = "".join([", " + javaName(arg[0]) for arg in args])
-  buffer.write(u"\n  public static void %s(%s) {" % (methodName, argTypesNames))
-  buffer.write(u"\n    android.util.EventLog.writeEvent(%s%s);" % (t.tagname.upper(), argNames))
-  buffer.write(u"\n  }\n")
+  buffer.write("\n  public static void %s(%s) {" % (methodName, argTypesNames))
+  buffer.write("\n    android.util.EventLog.writeEvent(%s%s);" % (t.tagname.upper(), argNames))
+  buffer.write("\n  }\n")
 
 
-buffer.write(u"}\n");
+buffer.write("}\n");
 
 output_dir = os.path.dirname(output_file)
 if not os.path.exists(output_dir):
   os.makedirs(output_dir)
-
-if sys.version_info[0] >= 3:
-  buffer=bytes(buffer.getvalue(), 'utf-8')
 
 event_log_tags.WriteOutput(output_file, buffer)
